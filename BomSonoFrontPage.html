@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<title>Bom Sono</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+* { padding:0;margin:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+	overflow:hidden;
+}
+
+/* Style the header */
+header {
+    background-color: #FC8004;
+    padding: 0.px;
+    text-align: center;
+    font-size: 20px;
+    color: black;
+    width:100%;
+    height: 100%;
+}
+
+
+
+
+article {
+    float: left;
+    padding: 0px;
+    width: 100%;
+    background-color: #F7B24A;
+    height: 100%;
+    width: 100%;/* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    height: 100%;
+    width:100%;
+
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #FC8004;
+  color: black;
+  font-size: 20px;
+  padding: 16px 50px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  overflow: scroll;
+  max-height:450px;
+  max-width: 50%;
+  padding: 0px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: #F7B24A;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 100%) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+<body>
+
+
+<header>
+  <h2>Bom Sono</h2>
+</header>
+
+<section>
+
+<article>
+	<div class="w3-container">
+	  <h2>Faça sua reserva já</h2>
+      <form action="/action_page.php">
+  <select name="Npessoas">
+    <option value="NULL">Qntd Pessoas</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <select name="Ncamas_casal">
+    <option value="NULL">Camas Casal</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <select name="Ncamas_casal">
+    <option value="NULL">Camas Solteiro</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+  <br><br>
+  <input type="submit" value=Buscar>
+</form>
+
+</div>
+
+ <div class="form-popup" id="Login">
+  <form action="/action_page.php" class="form-container">
+    <h1>Login</h1>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="exemplo@ex.com" name="email" required>
+
+    <label for="psw"><b>Senha</b></label>
+    <input type="password" placeholder="senha" name="psw" required>
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm('Login')">Fechar</button>
+  </form>
+</div>   
+
+
+<div class="form-popup" id="Cadastro">
+  <form action="/action_page.php" class="form-container">
+    <h1>Cadastro</h1>
+
+    <label for="email"><b>email</b></label>
+    <input type="text" placeholder="exemplo@ex.com" name="email" required>
+
+    <label for="psw"><b>Senha</b></label>
+    <input type="password" placeholder="senha" name="psw" required>
+    
+    <label for="Nome"><b>Nome</b></label>
+    <input type="text" placeholder="LulaLivre" name="nome" required>
+    
+    <label for="Telefone"><b>Telefone</b></label>
+    <input type="text" placeholder="(31)1048-5960" name="telefone" required>
+    
+    <label for="CEP/ZIP"><b>CEP/ZIP</b></label>
+    <input type="text" placeholder="36570-000" name="cep/zip" required>
+    
+    <label for="Pais"><b>País</b></label>
+    <input type="text" placeholder="Brasil" name="pais" required>
+    
+    <label for="Estado"><b>Estado</b></label>
+    <input type="text" placeholder="Rio de Janeiro" name="estado" required>
+    
+    <label for="Cidade"><b>Estado</b></label>
+    <input type="text" placeholder="de Deus" name="cidade" required>
+    
+    <label for="Bairro"><b>Bairro</b></label>
+    <input type="text" placeholder="Flamengo" name="bairro" required>
+    
+    <label for="TipoLogradouro"><b>Tipo de Logradouro</b></label>
+    <input type="text" placeholder="Av." name="tipologradouro" required>
+    
+    <label for="Logradouro"><b>Logradouro</b></label>
+    <input type="text" placeholder="Santos Dumont" name="tipologradouro" required>
+    
+    <label for="Numero"><b>Número</b></label>
+    <input type="text" placeholder="13" name="nrLogradouro" required>
+    
+    <button type="submit" class="btn">Cadastrar</button>
+    <button type="button" class="btn cancel" onclick="closeForm('Cadastro')">Fechar</button>
+  </form>
+ 
+</div>
+
+<div>
+<button class="open-button" onclick="openForm('Login')">Login</button>
+
+<button class="open-button" onclick="openForm('Cadastro')">Cadastre-se</button>
+
+<button class="open-button" onclick="openForm('Busca')">Procurar</button>
+</div>
+	
+	<div class="w3-content w3-display-container" style="max-width:100% 		height:400vh">
+		   <img class="mySlides" src="https://www.hoteloslo-coimbra.pt/wp-content/uploads/Quarto-standard-hotel-oslo-coimbra.jpg"  width="100%" height="400vh">
+		   <img class="mySlides" src="http://s2.glbimg.com/xtvCOG7tFWfeLmbZsHMqjHhxJzY=/0x584/g.glbimg.com/og/gs/gsat5/f/original/2014/05/03/inspiracoes-quarto-620-04_1436104370743685191.jpg" width="100%" height="400vh">
+		   <img class="mySlides" src="https://exp.cdn-hotels.com/hotels/19000000/18120000/18113900/18113807/09928d04_z.jpg" width="100%" height="400vh">
+		   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+			      <div class="w3-left w3-hover-text-black" onclick="plusDivs(-1)">&#10094;</div>
+			      <div class="w3-right w3-hover-text-black" onclick="plusDivs(1)">&#10095;</div>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(1)"></span>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(2)"></span>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(3)"></span>
+		   </div>
+	</div>
+</article>
+</section>
+<footer>
+  <pre>telefone: (13)1313-1313             email:bomsono@mymail.com</pre> 
+
+  <pre>Endereços:<br>Brasil - São Paulo    Dubai - Emirados Arabes   Xangai - China<br>     Av.Paulista,213          Av.Sheikh Zayed,71       St.Nánjīng Lù,20
+</pre>
+</footer>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+
+</script>
+
+<script>
+function openForm(id) {   
+document.getElementById(id).style.display = "block";
+}
+
+function closeForm(id) {
+document.getElementById(id).style.display = "none";
+}
+</script>
+
+</body>
+</html> 
