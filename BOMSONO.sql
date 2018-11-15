@@ -4,24 +4,14 @@
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8mb4 ;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
 -- Table structure for table `Apartamento`
 --
+create database if not exists BomSono;
+
+use  BomSono;
+
 
 DROP TABLE IF EXISTS `Apartamento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Apartamento` (
   `CodApt` int(11) NOT NULL,
   `Diaria` double DEFAULT NULL,
@@ -35,25 +25,10 @@ CREATE TABLE `Apartamento` (
   KEY `CodHotel` (`CodHotel`),
   CONSTRAINT `Apartamento_ibfk_1` FOREIGN KEY (`IdTipo`) REFERENCES `Tipo` (`idtipo`),
   CONSTRAINT `Apartamento_ibfk_2` FOREIGN KEY (`CodHotel`) REFERENCES `Hotel` (`codhotel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
---
--- Dumping data for table `Apartamento`
---
-
-LOCK TABLES `Apartamento` WRITE;
-/*!40000 ALTER TABLE `Apartamento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Apartamento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `Cliente`
---
 
 DROP TABLE IF EXISTS `Cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Cliente` (
   `CodCliente` int(11) NOT NULL,
   `email` text,
@@ -68,32 +43,22 @@ CREATE TABLE `Cliente` (
   `Nome` text,
   `Estado` text,
   PRIMARY KEY (`CodCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Cliente`
 --
 
-LOCK TABLES `Cliente` WRITE;
-/*!40000 ALTER TABLE `Cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Consumiveis`
 --
 
 DROP TABLE IF EXISTS `Consumiveis`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Consumiveis` (
   `CodCons` int(11) NOT NULL,
   `Desc` text NOT NULL,
   `Valor` double DEFAULT NULL,
   PRIMARY KEY (`CodCons`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Consumiveis`
@@ -109,8 +74,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Conta`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Conta` (
   `CodConta` int(11) NOT NULL,
   `CheckIn` timestamp NULL DEFAULT NULL,
@@ -123,8 +86,7 @@ CREATE TABLE `Conta` (
   KEY `CodCliente` (`CodCliente`),
   CONSTRAINT `Conta_ibfk_1` FOREIGN KEY (`CodApt`) REFERENCES `Apartamento` (`codapt`),
   CONSTRAINT `Conta_ibfk_2` FOREIGN KEY (`CodCliente`) REFERENCES `Cliente` (`codcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Conta`
@@ -140,8 +102,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Fisico`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Fisico` (
   `CodCliente` int(11) NOT NULL,
   `Sexo` text,
@@ -151,8 +111,7 @@ CREATE TABLE `Fisico` (
   `Rg` text,
   PRIMARY KEY (`CodCliente`),
   CONSTRAINT `Fisico_ibfk_1` FOREIGN KEY (`CodCliente`) REFERENCES `Cliente` (`codcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Fisico`
@@ -168,8 +127,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Funcionario`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Funcionario` (
   `CodFunc` int(11) NOT NULL,
   `cpf` text,
@@ -182,8 +139,7 @@ CREATE TABLE `Funcionario` (
   `Logradouro` text,
   `NrLogradouro` int(11) DEFAULT NULL,
   PRIMARY KEY (`CodFunc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Funcionario`
@@ -199,8 +155,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Hotel`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Hotel` (
   `CodHotel` int(11) NOT NULL,
   `Cidade` text,
@@ -212,8 +166,7 @@ CREATE TABLE `Hotel` (
   `Logradouro` text,
   `nrLogradouro` int(11) DEFAULT NULL,
   PRIMARY KEY (`CodHotel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Hotel`
@@ -229,8 +182,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `ItemConta`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `ItemConta` (
   `Qtd` int(11) NOT NULL,
   `DtHora` timestamp NOT NULL,
@@ -241,8 +192,7 @@ CREATE TABLE `ItemConta` (
   KEY `CodConta` (`CodConta`),
   CONSTRAINT `ItemConta_ibfk_1` FOREIGN KEY (`CodCons`) REFERENCES `Consumiveis` (`codcons`),
   CONSTRAINT `ItemConta_ibfk_2` FOREIGN KEY (`CodConta`) REFERENCES `Conta` (`codconta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+);
 
 --
 -- Dumping data for table `ItemConta`
@@ -258,15 +208,12 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Juridico`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Juridico` (
   `CodCliente` int(11) NOT NULL,
   `Cnpj` text,
   PRIMARY KEY (`CodCliente`),
   CONSTRAINT `Juridico_ibfk_1` FOREIGN KEY (`CodCliente`) REFERENCES `Cliente` (`codcliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Juridico`
@@ -282,8 +229,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Limpeza`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Limpeza` (
   `DtHora` timestamp NOT NULL,
   `AptOk` tinyint(1) DEFAULT NULL,
@@ -295,8 +240,7 @@ CREATE TABLE `Limpeza` (
   KEY `CodFunc` (`CodFunc`),
   CONSTRAINT `Limpeza_ibfk_1` FOREIGN KEY (`CodApt`) REFERENCES `Apartamento` (`codapt`),
   CONSTRAINT `Limpeza_ibfk_2` FOREIGN KEY (`CodFunc`) REFERENCES `Funcionario` (`codfunc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Limpeza`
@@ -312,8 +256,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `NotaFiscal`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `NotaFiscal` (
   `CodNF` int(11) NOT NULL,
   `NroOrdem` int(11) NOT NULL,
@@ -325,8 +267,7 @@ CREATE TABLE `NotaFiscal` (
   PRIMARY KEY (`CodNF`),
   KEY `CodConta` (`CodConta`),
   CONSTRAINT `NotaFiscal_ibfk_1` FOREIGN KEY (`CodConta`) REFERENCES `Conta` (`codconta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `NotaFiscal`
@@ -342,8 +283,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Reserva`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Reserva` (
   `CodRes` int(11) NOT NULL,
   `DtEntrega` text,
@@ -367,8 +306,7 @@ CREATE TABLE `Reserva` (
   CONSTRAINT `Reserva_ibfk_1` FOREIGN KEY (`CodCliente`) REFERENCES `Cliente` (`codcliente`),
   CONSTRAINT `Reserva_ibfk_2` FOREIGN KEY (`CodHotel`) REFERENCES `Hotel` (`codhotel`),
   CONSTRAINT `Reserva_ibfk_3` FOREIGN KEY (`IdTipo`) REFERENCES `Tipo` (`idtipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Reserva`
@@ -384,8 +322,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Tipo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Tipo` (
   `IdTipo` int(11) NOT NULL,
   `Suite` tinyint(1) DEFAULT NULL,
@@ -393,8 +329,7 @@ CREATE TABLE `Tipo` (
   `CasmasSolteiro` int(11) DEFAULT NULL,
   `NecEspeciais` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`IdTipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Tipo`
@@ -410,8 +345,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `Trabalha`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `Trabalha` (
   `CodFunc` int(11) NOT NULL,
   `CodHotel` int(11) NOT NULL,
@@ -419,8 +352,7 @@ CREATE TABLE `Trabalha` (
   KEY `CodHotel` (`CodHotel`),
   CONSTRAINT `Trabalha_ibfk_1` FOREIGN KEY (`CodFunc`) REFERENCES `Funcionario` (`codfunc`),
   CONSTRAINT `Trabalha_ibfk_2` FOREIGN KEY (`CodHotel`) REFERENCES `Hotel` (`codhotel`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ;
 
 --
 -- Dumping data for table `Trabalha`
@@ -430,14 +362,5 @@ LOCK TABLES `Trabalha` WRITE;
 /*!40000 ALTER TABLE `Trabalha` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Trabalha` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-11-12 20:17:33
