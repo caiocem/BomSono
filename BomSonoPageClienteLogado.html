@@ -1,0 +1,296 @@
+﻿<!DOCTYPE >
+<html html style="height:100%">
+<head>
+  <meta charset="UTF-8">
+</head>
+<title>Bom Sono</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+* { padding:0;margin:0%;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow:hidden;
+    height:auto;
+    margin:auto;
+    padding:auto;
+}
+
+/* Style the header */
+header {
+    background-color: #FC8004;
+    text-align: center;
+    font-size: 10px;
+    margin-top: -1%;
+    color: black;
+    width:100%;
+    height: 7%;
+
+}
+
+article {
+    float: left;
+    padding: 0px;
+    width: 100%;
+    background-color: #F7B24A;
+    height: 85%;
+    width: 100%;/* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 14px;
+    text-align: center;
+    color: black;
+    height: 20%;
+    width:100%;
+    margin-bottom:0%;
+
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #FC8004;
+  color: black;
+  font-size: 20px;
+  padding: 16px 40px;
+  margin: 1% 5.5%;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  overflow: auto;
+  padding: 0px 20px;
+  border: 20px solid white;
+  border-radius: 20px;
+  max-height:450px;
+  max-width: 60%;
+  padding: 0px;
+  background-color: white;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 0px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.form-container:hover {
+  box-shadow: 10px 0px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: black;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  color: black;
+  background-color: #F7B24A;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 100%) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+
+<body>
+ <div id="tots">
+	<header>
+	  <h2>Bom Sono</h2>
+	</header>
+
+<section>
+
+<article>
+ <p> <b>Logado como:</p>
+ <p>logout</b></p>
+ 
+ 
+ <div class="form-popup" id="Busca" style="width:60%" style="align:right" style="padding:30%">
+  <form width="600px"  class="form-container" >
+  <div style="padding:0px 20px">  
+  <h1>  O que deseja?</h1>
+  <label for="TV"><b>TV :</b></label>
+  <input type="checkbox" id="tv"> <br> 
+  <label for="Frigobar"><b>Frigobar :</b></label> 
+  <input type="checkbox" id="frigobar"> <br> 
+  <label for="Ac"><b>Ar Condicionado :</b></label> 
+  <input type="checkbox" id="a/c"> <br>
+  <label for="NecEsp"><b>Necessidades Especiais :</b></label>
+  <input type="checkbox" id="NecEsp"> <br>
+   <select name="Npessoas" id="Npessoas">
+    <option value="NULL">Qntd Pessoas</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <select name="Ncamas_casal" id="Ncamas_casal">
+    <option value="NULL">Camas Casal</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+  </select>
+
+  <select name="Ncamas_solteiro" id="Ncamas_solteiro">
+    <option value="NULL">Camas Solteiro</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="3">4</option>
+  </select>
+ 
+  <p> De  </p> <input type="date" id="DataChegada" value="" required>
+  <p> até </p> <input type="date" id="DataSaida" value="" required> <br><br>
+   </div>
+   <div>
+    <button type="submit" class="btn">Buscar</button>
+    <button type="button" class="btn cancel" onclick="closeForm('Busca')">Fechar</button>
+  </form>
+ </div>
+</div> 
+
+<div style="padding-left:35% ">
+<button class="open-button" onclick="openForm('Busca')">Procurar</button>
+</div>
+	
+	<div class="w3-content w3-display-container" style="max-width:80%" style="height:70%">
+		   <img class="mySlides" src="https://www.hoteloslo-coimbra.pt/wp-content/uploads/Quarto-standard-hotel-oslo-coimbra.jpg"  width="100%" height="400vh">
+		   <img class="mySlides" src="http://s2.glbimg.com/xtvCOG7tFWfeLmbZsHMqjHhxJzY=/0x584/g.glbimg.com/og/gs/gsat5/f/original/2014/05/03/inspiracoes-quarto-620-04_1436104370743685191.jpg" width="100%" height="400vh">
+		   <img class="mySlides" src="https://exp.cdn-hotels.com/hotels/19000000/18120000/18113900/18113807/09928d04_z.jpg" width="100%" height="400vh">
+		   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+			      <div class="w3-left w3-hover-text-black" onclick="plusDivs(-1)">&#10094;</div>
+			      <div class="w3-right w3-hover-text-black" onclick="plusDivs(1)">&#10095;</div>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(1)"></span>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(2)"></span>
+			      <span class="w3-badge demo w3-border w3-transparent w3-hover-black" onclick="currentDiv(3)"></span>
+		   </div>
+	</div>
+</article>
+</section>
+<footer>
+  <pre>telefone: (31)97562-1963             email:bomsono@mymail.com</pre> 
+  <pre>Endereços:</pre>
+  <pre><br>Brasil - São Paulo    Dubai - Emirados Arabes   Xangai - China<br></pre>
+<pre> Av.Paulista,213       Av.Sheikh Zayed,71     St.Nánjīng Lù,20
+</pre>
+</footer>
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " w3-white";
+}
+
+</script>
+
+<script>
+function openForm(id) {   
+  if(document.getElementById(id).style.display == "block")
+      document.getElementById(id).style.display = "none";
+  else
+    document.getElementById(id).style.display = "block";
+}
+
+function closeForm(id) {
+document.getElementById(id).style.display = "none";
+}
+</script>
+<script>
+function CheckTheBox(id) {
+   var checkBox = document.getElementById("fis");
+   var checkBox2 = document.getElementById("jur");
+   if (checkBox.checked == true)
+    document.getElementById("fisica").style.display = "block";
+   if (checkBox.checked == false)
+    document.getElementById("fisica").style.display = "none";
+   if (checkBox2.checked == true)
+    document.getElementById("juridica").style.display = "block";
+   if (checkBox2.checked == false)
+    document.getElementById("juridica").style.display = "none";
+}
+</script>
+ </div>
+</body>
+</html> 
+
