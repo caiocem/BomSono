@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="app/jquery-3.3.1.js"></script>
 </head>
 <title>Bom Sono</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -176,7 +175,7 @@ footer {
     <label for="psw"><b>Senha</b></label>
     <input type="password" placeholder="senha" name="psw" id="psw" required>
 
-    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn" id="btnLogin" onclick="loginCaller()">Login</button>
     <button type="button" class="btn cancel" onclick="closeForm('Login')">Fechar</button>
   </form>
 </div>   
@@ -184,7 +183,7 @@ footer {
 
 <div class="form-popup" id="Cadastro">
   <form  class="form-container">
-  <div style="padding 0px 20px">
+  <div style="padding 0px 20px;">
     <h1>Cadastro</h1>
    <div>
     <label for="PessoaF"><b>Pessoa Física :</b></label>
@@ -228,7 +227,7 @@ footer {
     <input type="text" placeholder="36570-000" name="cep/zip" id="cep/zip" required>
     
     <label for="Pais"><b>País</b></label>
-    <input type="text" placeholder="Brasil" name="pais" id="cep/zip" required>
+    <input type="text" placeholder="Brasil" name="pais" id="pais" required>
     
     <label for="Estado"><b>Estado</b></label>
     <input type="text" placeholder="Rio de Janeiro" name="estado" id="estado" required>
@@ -243,7 +242,7 @@ footer {
     <input type="text" placeholder="Av." name="tipologradouro" id="tipologradouro" required>
     
     <label for="Logradouro"><b>Logradouro</b></label>
-    <input type="text" placeholder="Santos Dumont" name="tipologradouro" id="tipologradouro" required>
+    <input type="text" placeholder="Santos Dumont" name="tipologradouro" id="logradouro" required>
     
     <label for="Numero"><b>Número</b></label>
     <input type="text" placeholder="13" name="nrLogradouro" id="nrLogradouro" required>
@@ -380,7 +379,60 @@ function CheckTheBox(id) {
 }
 </script>
  </div>
- <script src="app/client.js"></script>
+ <script src="app/client.js">
+  
+/* function login(callback)
+{
+  var url = 'http://localhost:8080/login';
+
+  var serverRequest = new XMLHttpRequest();
+
+  serverRequest.open("POST",url,true);
+  serverRequest.setRequestHeader("Content-type", 'application/x-www-form-urlencoded');
+  var parameters = 'email='+document.getElementById('email').value + '&psw='+document.getElementById('psw').value;
+  alert("Paramentros : "+parameters );
+  serverRequest.onreadystatechange = function () 
+  {
+    if((serverRequest.status == 200 || serverRequest.status == 0) && serverRequest.readyState == 4)
+    {
+      var response = JSON.parse(serverRequest.responseText);
+      
+      alert("DEU CERTO " +response[0].CodCliente);
+      callback(response);
+    }
+    else 
+    {
+		  console.log("Nao deu certo " );
+	  }
+  };
+  serverRequest.send(parameters);
+}
+
+function loginCaller()
+{
+  var data;
+  login( function (response) {
+      data = response;
+  });
+  alert("Reposta : " + data[0].CodCliente);
+}
+
+
+function cadCliente()
+{
+  var serverRequest = new XMLHttpRequest();
+  serverRequest.onreadystatechange = function () 
+  {
+    if(this.readyState == 4 && this.status == 200)
+    {
+      alert('Cliente cadastrado com sucesso!');
+    }
+  };
+}
+ */
+
+
+  </script>
 </body>
 </html> 
 

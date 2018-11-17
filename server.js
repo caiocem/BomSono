@@ -1,51 +1,60 @@
+
+const bodyParser = require('body-parser');
 const express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var fs = require('fs');
-var db = require('./app/db_connection.js');
-var http = require('http');
-var server = http.createServer(app);
+const app = express();
+const port = 8080
+const fs = require('fs');
+const db = require('./app/db_connection.js');
 
-var urlIndex = 'BomSonoFrontPage.html';
-
-app.use(bodyParser.urlencoded({ extended: true }));
+var index = 'BomSonoFrontPage.html';
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
- /*  fs.readFile(urlIndex, function(err, data) {
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  fs.readFile(index, function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write(data);
     res.end();
-  }); */
-  res.statusCode = 200;
-  res.end('OK');  
+  });
+});
+router.post('/', (req, res) => res.json({ message: 'Funcionando!' }));
+
+
+router.get('/app/client.js',(req,res) =>{
+  var JS_Script = "app/client.js";
+  fs.readFile(JS_Script, function(err, data) {
+    res.writeHead(200, {'Content-Type':'application/javascript'});
+    res.write(data);
+    res.end();
+  });
 });
 
-app.post('/', function(req, res) {
-  console.log(req.body);
-  res.statusCode = 200;
-  res.send(200);
+router.get('/cliente',(req,res)=>{
+  var url = 'BomSonoPageClienteLogado.html';
+  fs.readFile(url, function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
 });
 
-app.post('/cadCliente', function(req, res) {
-  //console.log(req.body);
-  
 
-  res.end(200);
+
+router.post('/login',(req,res) =>
+{
+  var email = req.body.email;
+  var senha = req.body.psw;
+  console.log(email);
+  console.log(senha);
+  var filter = " WHERE email='"+email +"' AND senha='"+senha+"'";
+  //res.json({"CodCliente" : "teste"});
+  db.execQuery("SELECT * FROM Cliente"+filter,res);
 });
 
-app.post('/login', function(req,res){
-  /* const email = req.email;
-  const senha = req.senha;
-  db.execQuery('SELECT * FROM CLIENTES WHERE email ='+email+' senha = '+senha, res); */
-  console.log(req.body.email);
-  console.log(req.body.senha);
-  console.log("CERTO");
-  res.statusCode = 200;
-  res.end('OK');  
-});
-
-app.post('/buscaApt', function(req, res) {
+router.post('/buscaApt',(req,res)=>{
   const tv = req.body.tv != null;
   const frigobar= req.body.frigobar != null;
   const arCond = req.body.arcond != null;
@@ -53,12 +62,21 @@ app.post('/buscaApt', function(req, res) {
   const npessoas = req.body.Npessoas;
   const dataChegada = req.body.dataChegada;
   const dataSaida = req.body.dataSaida;
-  const ncamas_casal = req.body.Ncamas_casal;
-  const ncamas_solteiro = req.body.Ncamas_solteiro;
+  var ncamas_casal = req.body.Ncamas_casal;
+  var ncamas_solteiro = req.body.Ncamas_solteiro;
   if(ncamas_casal == null) ncamas_casal = 0;
   if(ncamas_solteiro == null) ncamas_solteiro = 0;
-  //realizar uma consulta e retornar resultado
-  res.end();
+
+  var filter = "WHERE TV="+tv + " AND Ar="+arCond+" AND frigobar ="+frigobar;
+  filter += " AND CodApt in (SELECT idTipo FROM Tipo WHERE CamasCasal ="+ncamas_casal + " AND CasmasSolteiro ="+ncamas_solteiro;
+  filter += " AND NecEspeciais ="+Nesp +")";
+  db.execQuery("SELECT * FROM Apartamento "+filter + " ORDER BY Diaria",res);
 });
 
-server.listen(8080);
+router.post('/cadCliente',(req,res) => 
+{
+  res.send("OK");
+  res.end();
+});
+app.use('/', router);
+app.listen(port);
