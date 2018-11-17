@@ -166,7 +166,14 @@ footer {
  <div class="form-popup" id="Login">
   <form  class="form-container">
     <h1>Login</h1>
-
+    <div id="logincliente" style="display:block">
+     <label for="LogCliente"><b>Cliente :</b></label>
+     <input type="checkbox" id="cli" onclick="otherBox()"> 
+    </div>
+    <div id="loginfunc" style="display:block">
+     <label for="LogFunc"><b>Funcionário :</b></label>
+     <input type="checkbox" id="func" onclick="otherBox()"> 
+    </div>
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="exemplo@ex.com" name="email" id="email" required>
 
@@ -194,10 +201,14 @@ footer {
   <div style="padding 0px 20px">
     <h1>Cadastro</h1>
    <div>
-    <label for="PessoaF"><b>Pessoa Física :</b></label>
-    <input type="checkbox" id="fis" onclick="CheckTheBox('fisica')"> 
-    <label for="PessoaJ"><b>Pessoa Jurídica :</b></label>
-    <input type="checkbox" id="jur" onclick="CheckTheBox('juridica')"> 
+    <div id="Pfis">
+      <label for="PessoaF"><b>Pessoa Física :</b></label>
+      <input type="checkbox" id="fis" onclick="CheckTheBox('fisica')"> 
+    </div>
+    <div id="Pjuri">
+      <label for="PessoaJ"><b>Pessoa Jurídica :</b></label>
+      <input type="checkbox" id="jur" onclick="CheckTheBox('juridica')"> 
+    </div>
    </div>
     <div id="juridica" style="display:none">
     <label for="Cnpj"><b>CNPJ</b></label>
@@ -223,7 +234,7 @@ footer {
     <input type="text" placeholder="exemplo@ex.com" name="email" id="email" required>
 
     <label for="psw"><b>Senha</b></label>
-    <input type="password" placeholder="senha" name="psw" id="senha" required>
+    <input type="password" placeholder="senha" name="psw" required>
     
     <label for="Nome"><b>Nome</b></label>
     <input type="text" placeholder="Ricardo Almeida" name="nome" id="nome" required>
@@ -265,6 +276,7 @@ footer {
   <form width="600px"  class="form-container"  >
   <div style="padding:0px 20px">  
   <h1>  O que deseja?</h1>
+  <label for="local"><b>Localidade :</b></label>
   <select name="hoteis" id="hoteis">
     <option value="NULL">Hotel</option>
     <option value="1">São Paulo</option>
@@ -381,28 +393,42 @@ function closeForm(id) {
 document.getElementById(id).style.display = "none";
 }
 </script>
+
+<script>
+  function otherBox() {   
+    var checkBox = document.getElementById("cli");
+    var checkBox2 = document.getElementById("func");
+    if (checkBox.checked == true)
+       document.getElementById("loginfunc").style.display = "none";
+    if (checkBox.checked == false)
+       document.getElementById("loginfunc").style.display = "block";
+    if (checkBox2.checked == true)
+       document.getElementById("logincliente").style.display = "none";
+    if (checkBox2.checked == false)
+        document.getElementById("logincliente").style.display = "block";
+  }
+</script>
+
 <script>
 function CheckTheBox(id) {
    var checkBox = document.getElementById("fis");
    var checkBox2 = document.getElementById("jur");
    if (checkBox.checked == true){
-    if (checkBox2.checked == false)
+    document.getElementById("Pjuri").style.display = "none";
     document.getElementById("fisica").style.display = "block";
    }
-   if (checkBox.checked == false)
+   if (checkBox.checked == false) {
+    document.getElementById("Pjuri").style.display = "block";
     document.getElementById("fisica").style.display = "none";
+   }
    if (checkBox2.checked == true){
-     if (checkBox.checked == false)
+    document.getElementById("Pfis").style.display = "none";
     document.getElementById("juridica").style.display = "block";
    }
-   if (checkBox2.checked == false)
+   if (checkBox2.checked == false){
+    document.getElementById("Pfis").style.display = "block";
     document.getElementById("juridica").style.display = "none";
-    if (checkBox.checked == true){
-      if (checkBox2.checked == true){
-      document.getElementById("fisica").style.display = "none";
-      document.getElementById("juridica").style.display = "none";
-      }
-    }
+   }
 }
 </script>
  </div>
