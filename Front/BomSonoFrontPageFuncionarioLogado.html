@@ -1,7 +1,9 @@
 <!doctype html>
 <html><head>
   <meta charset="UTF-8">
-<title>Bom Sono</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><style>
+<title>Bom Sono</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
@@ -186,6 +188,67 @@ tr:nth-child(even) {
     background-color: #FC8004;
 }
 
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #F7B24A;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #F7B24A;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #FC8004;
+    cursor: pointer;
+}
+
+
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 100%) {
     nav, article {
@@ -308,17 +371,75 @@ tr:nth-child(even) {
                         </tr>
                     </tbody></table>
                    <div style="padding-top:5px"> 
-                    <button type="submit" class="btn" onclick="openForm('contadetalhes')">Visualizar conta</button>
+                    <button type="button" onclick="document.getElementById('Contadetalhes').style.display='block'">Visualizar conta</button>
                     <input type="number" placeholder="000" name="conta" id="verconta" required="">
+                    
                   </div>
                 </div>
             </form>
          </div>
 
+         <div id="Contadetalhes" class="modal">
+  
+          <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('Contadetalhes').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+            
+            <div class="container">
+              <div id="contatual"><b>Conta do Apt</div></b>
+              <table id="produtos">
+                <tbody><tr>
+                  <th>Produto</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                </tr>
+                <tr>
+                  <td>Água</td>
+                  <td>R$32,99</td>
+                  <td>21/02/2018, 15:32:29</td>
+                </tr>
+                <tr>
+                  <td>Chocolate</td>
+                  <td>R$02,90</td>
+                  <td>21/02/2018, 15:30:29</td>
+                </tr>
+            </tbody></table>
+            </div>
+        
+            <div class="container" >
+              <button type="button" onclick="adicionarProd('produto')" class="cancelbtn">Adicionar Produto</button>
+              <input type="text" name="produto" id="produto" required="">
+              <script>
+                function adicionarProd(id) {
+                  var table = document.getElementById("produtos");
+                  var row = table.insertRow(1);
+                  var cell1 = row.insertCell(0);
+                  var cell2 = row.insertCell(1);
+                  var cell3 = row.insertCell(2);
+                  var prod = document.getElementById("produto").value;
+                  var oDate = new Date();
+                  var nHrs = oDate.getHours();
+                  var nMin = oDate.getMinutes();
+                  var nSec = oDate.getSeconds();
+                  var nDate = oDate.getDate();
+                  var nMnth = oDate.getMonth();
+                  var nYear = oDate.getFullYear();
+                  var data = nDate + '/' + nMnth + '/' + nYear + ", " + nHrs + ":" + nMin + ":" + nSec;
+                  cell1.innerHTML = prod;
+                  cell2.innerHTML = "valor";
+                  cell3.innerHTML = data;
+                  document.getElementById("produto").value = "";
+                }
+              </script>
+            </div>
+          </form>
+        </div>
+
          <div class="table" style="display: none;" id="limpeza">
           <form style="padding-left:20%">
               <div style="padding 0px 20px">
-                  <table>
+                  <table id="limpeza">
                       <tbody><tr>
                         <th>Apt</th>
                         <th>Funcionario</th>
@@ -336,9 +457,36 @@ tr:nth-child(even) {
                       </tr>
                   </tbody></table>
                  <div style="padding-top:5px"> 
-                  <button type="submit" class="btn" onclick="openForm('verlimpos')">Visualizar Apt</button>
-                  <input type="number" placeholder="000" name="limpeza" id="verlimpeza" required="">
+                  <button type="button" class="btn" onclick="limpo()">Adicionar Limpeza</button>
+                  <input type="number" placeholder="Apt" name="AptLimpo" id="AptLimpo" required="">
+                  <input type="text" placeholder="Funcionario" name="FuncLimpo" id="FuncLimpo" required="">
+                  <script>
+                      function limpo() {
+                        var tabela = document.getElementById("limpeza");
+                        var apt = document.getElementById("AptLimpo").value;
+                        var func = document.getElementById("FuncLimpo").value;
+                        var row = tabela.insertRow(1);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var prod = document.getElementById("produto").value;
+                        var oDate = new Date();
+                        var nHrs = oDate.getHours();
+                        var nMin = oDate.getMinutes();
+                        var nSec = oDate.getSeconds();
+                        var nDate = oDate.getDate();
+                        var nMnth = oDate.getMonth();
+                        var nYear = oDate.getFullYear();
+                        var data = nDate + '/' + nMnth + '/' + nYear + ", " + nHrs + ":" + nMin + ":" + nSec;
+                        cell1.innerHTML = apt;
+                        cell2.innerHTML = func;
+                        cell3.innerHTML = data;
+                        document.getElementById("AptLimpo").value = "";
+                        document.getElementById("FuncLimpo").value = "";
+                      }
+                    </script>
                 </div>
+                  
               </div>
           </form>
        </div>
@@ -409,13 +557,33 @@ function showDivs(n) {
 }
 
 </script>
-
 <script>
-function openForm(id) {   
-  if(document.getElementById(id).style.display == "block")
-      document.getElementById(id).style.display = "none";
-  else
-    document.getElementById(id).style.display = "block";
+  // Get the modal
+  var modal = document.getElementById('Contadetalhes');
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
+<script>
+function openForm(id) {  
+  if(document.getElementById(id).style.display == "block") {
+    document.getElementById(id).style.display = "none";
+  } else {
+  if(document.getElementById("Cadastro").style.display =="block")
+    document.getElementById("Cadastro").style.display ="none";
+  if(document.getElementById("Contas").style.display =="block")
+    document.getElementById("Contas").style.display ="none";
+  if(document.getElementById("limpeza").style.display =="block")
+    document.getElementById("limpeza").style.display ="none";
+  if(document.getElementById("relatorios").style.display =="block")
+    document.getElementById("relatorios").style.display ="none";
+  
+   document.getElementById(id).style.display = "block";
+  }
 }
 
 function closeForm(id) {
