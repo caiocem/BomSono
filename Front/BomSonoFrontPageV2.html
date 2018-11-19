@@ -1,11 +1,13 @@
-﻿<!DOCTYPE >
+<!DOCTYPE >
 <html html >
 <head>
   <meta charset="UTF-8">
 </head>
 <title>Bom Sono</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" typr="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="C:\Users\caioh\OneDrive\Área de Trabalho\w3.css">
+
 <style>
 .mySlides {display:none}
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
@@ -344,12 +346,13 @@ footer {
 </div>
 </article>
 </section>
-<footer> <b>
+<footer><b>
   <pre>telefone: (31)97562-1963             email:bomsono@mymail.com</pre> 
   <pre>Endereços:</pre>
   <pre><br>Brasil - São Paulo    Emirados Arabes - Dubai    China - Xangai<br></pre>
 <pre> Av.Paulista,213       Av.Sheikh Zayed,71     St.Nánjīng Lù,20
-</pre> </b>
+</pre>
+</b>
 </footer>
 <script>
 var slideIndex = 1;
@@ -382,11 +385,20 @@ function showDivs(n) {
 </script>
 
 <script>
-function openForm(id) {   
-  if(document.getElementById(id).style.display == "block")
-      document.getElementById(id).style.display = "none";
-  else
-    document.getElementById(id).style.display = "block";
+function openForm(id) {  
+  if(document.getElementById(id).style.display == "block"){
+      document.getElementById(id).style.display = "none"; 
+      return;
+  } else {
+  if(document.getElementById("Cadastro").style.display =="block")
+    document.getElementById("Cadastro").style.display ="none";
+  if(document.getElementById("Login").style.display =="block")
+    document.getElementById("Login").style.display ="none";
+  if(document.getElementById("Busca").style.display =="block")
+    document.getElementById("Busca").style.display ="none";
+
+  document.getElementById(id).style.display = "block";
+  }
 }
 
 function closeForm(id) {
