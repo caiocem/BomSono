@@ -1,4 +1,4 @@
-<!DOCTYPE >
+﻿<!doctype html >
 <html html >
 <head>
   <meta charset="UTF-8">
@@ -30,8 +30,9 @@ header {
     text-align: center;
     font-size: 10px;
     margin-top: -2.4%;
+    margin-left: -2.2%;
     color: black;
-    width:100%;
+    width:auto;
     height: 7%;
 
 }
@@ -41,7 +42,7 @@ article {
     padding: 0px;
     width: 100%;
     background-color: #F7B24A;
-    height: 85%;
+    height: 70%;
     width: 100%;/* only for demonstration, should be removed */
 }
 
@@ -57,8 +58,9 @@ footer {
     background-color: #777;
     padding: 14px;
     text-align: center;
+    position: fixed;
     color: black;
-    height: 20%;
+    height: 100%;
     width:100%;
     margin-bottom:0%;
 
@@ -145,6 +147,68 @@ footer {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #F7B24A;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #F7B24A;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #FC8004;
+    cursor: pointer;
+}
+
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 100%) {
@@ -272,6 +336,17 @@ footer {
     <button type="button" class="btn cancel" onclick="closeForm('Cadastro')">Fechar</button>
   </form>
 </div>
+
+<div id="Apts" class="modal" style="display:none">
+          <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer" id="QuartosAqui">
+              <span onclick="document.getElementById('Apts').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <p><b>Quartos</b></p>
+            </div> 
+            <div class="container">
+            </div>  
+          </form>
+</div>
  
  
  <div class="form-popup" id="Busca" style="width:60%" style="min-width:60%" style="align:right" style="padding:60%">
@@ -319,7 +394,7 @@ footer {
   <p> até </p> <input type="date" id="DataSaida" value="" required> <br><br>
    </div>
    <div>
-    <button type="submit" class="btn">Buscar</button>
+    <button type="button" onclick="openApt()" class="btn">Buscar</button>
     <button type="button" class="btn cancel" onclick="closeForm('Busca')">Fechar</button>
   </form>
  </div>
@@ -333,9 +408,9 @@ footer {
 <button class="open-button" onclick="openForm('Busca')">Procurar</button>
 </div>
 	<div class="w3-content w3-display-container" style="auto" style="min-height:0%">
-		   <img class="mySlides" src="https://www.hoteloslo-coimbra.pt/wp-content/uploads/Quarto-standard-hotel-oslo-coimbra.jpg"  width="100%" height="80%"  >
-		   <img class="mySlides" src="http://s2.glbimg.com/xtvCOG7tFWfeLmbZsHMqjHhxJzY=/0x584/g.glbimg.com/og/gs/gsat5/f/original/2014/05/03/inspiracoes-quarto-620-04_1436104370743685191.jpg" width="100%" height="80%">
-		   <img class="mySlides" src="https://exp.cdn-hotels.com/hotels/19000000/18120000/18113900/18113807/09928d04_z.jpg" width="100%" height="80%">
+		   <img class="mySlides" src="https://www.hoteloslo-coimbra.pt/wp-content/uploads/Quarto-standard-hotel-oslo-coimbra.jpg"  width="100%" height="400vh"  >
+		   <img class="mySlides" src="http://s2.glbimg.com/xtvCOG7tFWfeLmbZsHMqjHhxJzY=/0x584/g.glbimg.com/og/gs/gsat5/f/original/2014/05/03/inspiracoes-quarto-620-04_1436104370743685191.jpg" width="100%" height="400vh">
+		   <img class="mySlides" src="https://exp.cdn-hotels.com/hotels/19000000/18120000/18113900/18113807/09928d04_z.jpg" width="100%" height="400vh">
 		   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
 			      <div class="w3-left w3-hover-text-black" onclick="plusDivs(-1)">&#10094;</div>
 			      <div class="w3-right w3-hover-text-black" onclick="plusDivs(1)">&#10095;</div>
@@ -419,6 +494,12 @@ document.getElementById(id).style.display = "none";
     if (checkBox2.checked == false)
         document.getElementById("logincliente").style.display = "block";
   }
+</script>
+
+<script>
+	function openApt() {
+		document.getElementById("Apts").style.display = "block"
+	}
 </script>
 
 <script>
