@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html><head>
   <meta charset="UTF-8">
 <title>Bom Sono Func</title><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +29,7 @@ header {
     text-align: center;
     font-size: 10px;
     margin-top: -2.4%;
+    margin-bottom: 1%;
     color: black;
     width:100%;
     height: 10%;
@@ -227,6 +228,7 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
     background-color: #F7B24A;
+    border-radius: 20px;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #F7B24A;
     width: 60%; /* Could be more or less, depending on screen size */
@@ -271,10 +273,14 @@ span.psw {
 
 <div> 
     <div class="sidenav">
-        <button class="open-button" onclick="openForm('Cadastro')">Cadastro</button>
-        <button class="open-button" onclick="openForm('Contas')">Contas</button>
-        <button class="open-button" onclick="openForm('limpeza')">Limpeza</button>
-        <button sytle="padding-left:-10px" class="open-button" onclick="openForm('relatorios')">Relatórios</button>
+        <button style="width:100%" class="open-button" onclick="openForm('Cadastro')">Cadastro</button>
+        <button style="width:100%" style="padding-left:-20px" class="open-button" onclick="openForm('Apartamentos')">Apartamentos</button>
+        <button style="width:100%" style="padding-left:-20px" class="open-button" onclick="openForm('Consumiveis')">Consumíveis</button>
+        <button style="width:100%" class="open-button" onclick="openForm('Contas')">Contas</button>
+        <button style="width:100%" class="open-button" onclick="openForm('limpeza')">Limpeza</button>
+        <button style="width:100%" class="open-button" onclick="openForm('Funcionario')">Funcionários</button>
+        <button style="width:100%" style="padding-left:-10px" class="open-button" onclick="openForm('hoteis')">Hotéis</button>
+        <button style="width:100%" style="padding-left:-10px" class="open-button" onclick="openForm('relatorios')">Relatórios</button>
       </div>
 </div>
 <div class="form-popup" id="contadetalhes" style="display:none">
@@ -291,7 +297,13 @@ span.psw {
                 <div style="padding 0px 20px">
                     <h1>Cadastro de Funcionários</h1>
                    <div>
-                    
+                    <label for="HotelTrab"><b>Hotel</b></label><br>
+                    <select name="HotelTrab" id="HotelTrab">
+                   <option value="0">Hotel</option>
+                   <option value="1">São Paulo</option>
+                   <option value="2">Dubai</option>
+                   <option value="3">Xangai</option> 
+                    </select> <br> <br>
                     <div id="fisica" style="display:block">
                     <label for="Cpf"><b>CPF</b></label><br>
                     <input type="text" placeholder="123.456.789-00" name="cpf" id="cpf" required=""> <br>
@@ -301,7 +313,7 @@ span.psw {
                     <input type="text" placeholder="Astronauta" name="profissao" id="profissao" required=""> <br>
                     <label for="Sexo"><b>Sexo</b></label><br>
                        <select name="Sexo" id="Sexo">
-                      <option value="NULL">Sexo</option>
+                      <option value="0">Sexo</option>
                       <option value="1">Masculino</option>
                       <option value="2">Feminino</option> 
                        </select> <br> <br>
@@ -342,42 +354,227 @@ span.psw {
                     <input type="text" placeholder="Santos Dumont" name="logradouro" id="logradouro" required=""> <br>
                     
                     <label for="Numero"><b>Número</b></label><br>
-                    <input type="text" placeholder="13" name="nrLogradouro" id="nrLogradouro" required=""> <br>
+                    <input type="number" placeholder="13" name="nrLogradouro" id="nrLogradouro" required=""> <br>
                   </div>
                     <button type="submit" class="btn">Cadastrar</button>
                     <button type="button" class="btn cancel" onclick="closeForm('Cadastro')">Fechar</button>
                 </div>
            </form>
          </div>   
+         
+         <div style="display: none;" id="Apartamentos">
+          <form style="padding-left:20%" >
+              <div style="padding 0px 20px">
+                  <table id="aparts">
+                      <tbody><tr>
+                        <th>Apt</th>
+                        <th>Tipo</th>
+                        <th>Diária</th>
+                        <th>Frigobar</th>
+                        <th>Ar Cond</th>
+                        <th>TV</th>
+                      </tr>
+                      
+                  </tbody></table>
+                 <div class="container" style="padding-top:5px"> 
+                  <button type="button" onclick="document.getElementById('NewApt').style.display='block'" class="cancelbtn">Adicionar Apt</button>
+                  <button type="button" onclick="document.getElementById('TiposTabela').style.display='block'" class="cancelbtn">Tabela de Tipos</button>
+                </div>
+                  
+              </div>
+          </form>
+       </div>
 
-         <div class="table" style="display:none" id="Contas">
+       <div id="NewApt" class="modal" style="display:none" >
+        <form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+        <span onclick="document.getElementById('NewApt').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+       <div id="dadosApt" style="padding-left:10px">
+        <label for="Numero"><b>N Apt</b></label><br>
+        <input type="number" placeholder="" name="NumeroApt" id="NumeroApt" required=""> <br>
+        <label for="TipoApt"><b>Tipo do Apt</b></label><br>
+        <select name="TipoApt" id="TipoApt">
+       <option value="0">Tipo</option>
+       <option value="1">1</option>
+       <option value="2">2</option> 
+        </select> <br> <br>
+        <label for="Numero"><b>Diária</b></label><br>
+        <input type="number" placeholder="" name="Diaria" id="Diaria" required=""> <br>
+        <label for="Numero"><b>Frigobar</b></label><br>
+        <input type="checkbox" placeholder="" name="Frigobar" id="Frigobar" required=""> <br>
+        <label for="Numero"><b>Ar Condicionado</b></label><br>
+        <input type="checkbox" placeholder="" name="AC" id="AC" required=""> <br>
+        <label for="Numero"><b>TV</b></label><br>
+        <input type="checkbox" placeholder="" name="TV" id="TV" required=""> <br>
+        <button type="button" onclick="adicionarApt()" id="novoApt"class="cancelbtn">Adicionar Apt</button><br>
+        <p style="color:#F7B24A"> .</p>
+      </div>
+     </form>
+  </div>
+
+       <div id="TiposTabela" class="modal" style="display:none">
+          <form class="modal-content animate" action="/action_page.php">
+          <div class="imgcontainer">
+          <span onclick="fecha()"  class="close" title="Close Modal">&times;</span>
+          </div>
+                
+          <div class="container">
+          <table id="TabelaTipos">
+            <tbody><tr>
+              <th>Número</th>
+              <th>Suite</th>
+              <th>NecEsp</th>
+              <th>Camas Casal</th>
+              <th>Camas Solteiro</th>
+            </tr>
+                    
+          </tbody></table>
+                  
+          <button type="button" style="margin-top:5px" onclick="document.getElementById('dadosTipo').style.display='block'" class="cancelbtn">Adicionar Tipo</button>
+          <div id="dadosTipo" style="display:none">                    <label for="TipoN"><b>Numero</b></label><br>
+            <input type="number" placeholder="" name="NTipo" id="NTipo" required=""> <br>
+            <label for="TipoSuite"><b>Suite</b></label><br>
+            <input type="checkbox" placeholder="" name="Suite" id="Suite" required=""> <br>
+            <label for="ProdDescr"><b>NecEsp</b></label><br>
+            <input type="checkbox" placeholder="" name="Descri" id="NecEsp" required=""> <br>
+            <label for="ProdValor"><b>Camas Casal</b></label><br>
+            <input type="number" placeholder="" name="camasCasal" id="CamasCasal" required=""> <br>
+            <label for="ProdValor"><b>Camas Solteiro</b></label><br>
+            <input type="number" placeholder="" name="camasSolteiro" id="CamasSolteiro" required=""> <br>
+            <button type="button" onclick="NewTipo('produto')">Adicionar</button>
+          </div>
+        </div>
+      
+       </form>
+    </div>
+    
+    <div style="display: none;" id="Funcionario">
+      <form style="padding-left:20%" >
+          <div style="padding 0px 20px">
+              <table id="TabFuncionario">
+                  <tbody><tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Local de Trabalho</th>
+                  </tr>
+                  
+              </tbody></table>
+             <div class="container" style="padding-top:5px"> 
+              <button type="button" onclick="alteraLocal('NrFuncionario')" class="cancelbtn">Alterar Local</button>
+              <input typer="number" placeholder="Nr do Funcionario" id="NrFuncionario" required="">
+              <select name="NovoLocal" id="NovoLocal">
+                <option value="0">Hotel</option>
+                <option value="1">São Paulo</option>
+                <option value="2">Dubai</option>
+                <option value="3">Xangai</option>
+              </select>  
+
+            </div>
+              
+          </div>
+      </form>
+   </div>
+    
+		<div style="display: none;" id="Consumiveis">
+          <form style="padding-left:20%" >
+              <div style="padding 0px 20px">
+                  <table id="Consumos">
+                      <tbody><tr>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                      </tr>
+                      
+                  </tbody></table>
+                 <div class="container" style="padding-top:5px"> 
+                  <button type="button" onclick="document.getElementById('NewProd').style.display='block'" class="cancelbtn">Adicionar Consumível</button>
+                  
+                </div>
+                  
+              </div>
+          </form>
+       </div>
+       
+       <div id="NewProd" class="modal">
+  
+          <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('NewProd').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+            
+            <div class="container">
+              <form>
+					<label for="ProdNome"><b>Nome do Produto</b></label><br>
+                    <input type="text" placeholder="" name="NomeProduto" id="NomeProduto" required=""> <br>
+                    <label for="ProdDescr"><b>Descrição</b></label><br>
+                    <input type="text" placeholder="" name="Descri" id="Descri" required=""> <br>
+                    <label for="ProdValor"><b>Valor do Produto</b></label><br>
+                    <input type="number" placeholder="" name="ValorProduto" id="ValorProduto" required=""> <br>
+              </form>
+              <button type="button" onclick="NewProduto('produto')" class="cancelbtn">Cadastrar Produto</button>
+            </div>
+
+          </form>
+        </div>
+       
+        <div class="table" style="display:none" id="Contas">
             <form style="padding-left:20%">
                 <div style="padding 0px 20px">
-                    <table>
+                    <table id="TabConta">
                         <tbody><tr>
                           <th>Apt</th>
                           <th>Morador</th>
+                          <th>CPF</th>
                           <th>Valor</th>
                         </tr>
                         <tr>
                           <td>231</td>
                           <td>Maria Anders</td>
+                          <td>152.153.154-55</td>
                           <td>R$35,90</td>
                         </tr>
                         <tr>
                           <td>232</td>
                           <td>Francisco Chang</td>
+                          <td>123.234.345-56</td>
                           <td>R$9971,96</td>
                         </tr>
                     </tbody></table>
                    <div style="padding-top:5px"> 
                     <button type="button" onclick="document.getElementById('Contadetalhes').style.display='block'">Visualizar conta</button>
-                    <input type="number" placeholder="000" name="conta" id="verconta" required="">
-                    
+                    <input type="number" placeholder="000" name="conta" id="verconta" required=""><br>
+                    <div style="padding-top:5px">
+                      <button type="button" onclick="document.getElementById('NewConta').style.display='block'">Abrir Conta</button>
+                    </div>
                   </div>
                 </div>
             </form>
          </div>
+
+         <div id="NewConta" class="modal">
+          <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('NewConta').style.display='none'" class="close" title="Close Modal">&times;</span>
+            </div>
+            
+            <div class="container">
+              <form>
+                    <label for="AptConta"><b>Apt</b></label><br>
+                    <input type="number" placeholder="25" name="AptConta" id="AptConta" required=""> <br>
+                    <label for="ClienteConta"><b>Cliente</b></label><br>
+                    <input type="text" placeholder="Ricardo" name="ClienteConta" id="ClienteConta" required=""> <br>
+                    <label for="CPFConta"><b>CPF</b></label><br>
+                    <input type="text" placeholder="123.234.345-56" name="CPFConta" id="CPFConta" required=""> <br>
+              </form>
+              <div style="padding-top:5px">
+              <button type="button" onclick="NewConta()" class="cancelbtn">Cadastrar Conta</button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+  
 
          <div id="Contadetalhes" class="modal">
   
@@ -418,7 +615,7 @@ span.psw {
          <div style="display: none;" id="limpeza">
           <form style="padding-left:20%" >
               <div style="padding 0px 20px">
-                  <table id="limpesa">
+                  <table id="limpe">
                       <tbody><tr>
                         <th>Apt</th>
                         <th>Funcionario</th>
@@ -436,15 +633,86 @@ span.psw {
                       </tr>
                   </tbody></table>
                  <div class="container" style="padding-top:5px"> 
-                  <button type="button" onclick="limpo('limpeza')" class="cancelbtn">Adicionar Limpeza</button>
+                  <button type="button" onclick="limpo('limpe')" class="cancelbtn">Adicionar Limpeza</button>
                   <input type="number" placeholder="Apt" name="AptLimpo" id="AptLimpo" required="">
                   <input type="text" placeholder="Funcionario" name="FuncLimpo" id="FuncLimpo" required="">
-                  
+                  <input type="text" placeholder="CPF" name="FuncCPF" id="FuncCPF" required="">
                 </div>
                   
               </div>
           </form>
        </div>
+
+       <div id="hoteis" style="display:none" >
+        <form style="padding-left:20%">
+          <table id="TabHotel" >
+            <tbody><tr>
+              <th>Num Hotel</th>
+              <th>Endereço</th>
+              <th>Cidade</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Av.Paulista, 213</td>
+              <td>São Paulo</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Av.Sheikh Zayed, 71</td>
+              <td>Dubai</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>St.Nánjīng Lù, 20</td>
+              <td>Xangai</td>
+            </tr>
+        </tbody></table>
+            <div style="padding-top:5px">
+              <button type="button" class="btn" onclick="document.getElementById('CadastroHotel').style.display='block'">Cadastrar Hotel</button>
+            </div>
+            </form>
+        </div>
+
+       <div id="CadastroHotel" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+          <div class="imgcontainer">
+            <span onclick="document.getElementById('CadastroHotel').style.display='none'" class="close" title="Close Modal">&times;</span>
+          </div>
+          
+          <div class="container">
+            <form>
+                  <label for="NumHotel"><b>Num Hotel</b></label><br>
+                  <input type="number" placeholder="" name="NumHotel" id="NumHotel" required=""> <br>
+
+                  <label for="HotelCEP/ZIP"><b>HotelCEP/ZIP</b></label><br>
+                  <input type="text" placeholder="36570-000" name="Hotelcep/zip" id="Hotelcep/zip" required=""> <br>
+                  
+                  <label for="HotelPais"><b>País</b></label><br>
+                  <input type="text" placeholder="Brasil" name="Hotelpais" id="Hotelpais" required=""> <br>
+                  
+                  <label for="HotelEstado"><b>Estado</b></label><br>
+                  <input type="text" placeholder="Rio de Janeiro" name="Hotelestado" id="Hotelestado" required=""> <br>
+                  
+                  <label for="Cidade"><b>Cidade</b></label><br>
+                  <input type="text" placeholder="de Deus" name="cidade" id="Hotelcidade" required=""> <br>
+                  
+                  <label for="HotelTipoLogradouro"><b>Tipo de Logradouro</b></label><br>
+                  <input type="text" placeholder="Av." name="tipologradouro" id="Hoteltipologradouro" required=""> <br>
+                  
+                  <label for="HotelLogradouro"><b>Logradouro</b></label><br>
+                  <input type="text" placeholder="Santos Dumont" name="logradouro" id="Hotellogradouro" required=""> <br>
+                  
+                  <label for="HotelNumero"><b>Nr Logradouro</b></label><br>
+                  <input type="number" placeholder="13" name="nrLogradouro" id="HotelnrLogradouro" required=""> <br>
+            </form>
+            <div style="padding-top:5px">
+            <button type="button" onclick="NewHotel('')" class="cancelbtn">Cadastrar Hotel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
 
        <div class="table" style="display: none;" id="relatorios">
          <form style="padding-left:20%">  
@@ -456,7 +724,7 @@ span.psw {
               <input type="checkbox" id="porhotel" onclick="CheckTheRelato('hoteis')"> <br>
               <div id="hoteis" style="display:none">
                   <select name="hoteis" id="hotel">
-                    <option value="NULL">Hotel</option>
+                    <option value="0">Hotel</option>
                     <option value="1">São Paulo</option>
                     <option value="2">Dubai</option>
                     <option value="3">Xangai</option>
@@ -472,7 +740,7 @@ span.psw {
                </div>
               <p style="padding-top:5px"> De  </p> <input type="date" id="DataChegada" value="" required="">
               <p> até </p> <input type="date" id="DataSaida" value="" required=""> <br><br>
-              <button type="button" class="btn" onclick="openRelato()" style="padding-bottom:5px">Visualizar Relatório</button>
+              <button type="button" class="btn" onclick="openRelato()">Visualizar Relatório</button>
               </b>
             </b></div><b>
 		 <div id="RelatorioC" class="modal" style="display:none">
@@ -574,8 +842,15 @@ function openForm(id) {
     document.getElementById("limpeza").style.display ="none";
   if(document.getElementById("relatorios").style.display =="block")
     document.getElementById("relatorios").style.display ="none";
-  
-   document.getElementById(id).style.display = "block";
+  if(document.getElementById("Apartamentos").style.display =="block")
+    document.getElementById("Apartamentos").style.display ="none";
+  if(document.getElementById("Consumiveis").style.display =="block")
+    document.getElementById("Consumiveis").style.display ="none";
+  if(document.getElementById("hoteis").style.display =="block")
+    document.getElementById("hoteis").style.display ="none";
+  if(document.getElementById("Funcionario").style.display =="block")
+    document.getElementById("Funcionario").style.display ="none";
+  document.getElementById(id).style.display = "block";
   }
 }
 
@@ -600,37 +875,196 @@ document.getElementById(id).style.display = "none";
 </script>
 
 <script>
-                function adicionarProd(id) {
-                  var table = document.getElementById("produtos");
-                  var row = table.insertRow(1);
-                  var cell1 = row.insertCell(0);
-                  var cell2 = row.insertCell(1);
-                  var cell3 = row.insertCell(2);
-                  var prod = document.getElementById("produto").value;
-                  var oDate = new Date();
-                  var nHrs = oDate.getHours();
-                  var nMin = oDate.getMinutes();
-                  var nSec = oDate.getSeconds();
-                  var nDate = oDate.getDate();
-                  var nMnth = oDate.getMonth();
-                  var nYear = oDate.getFullYear();
-                  var data = nDate + '/' + nMnth + '/' + nYear + ", " + nHrs + ":" + nMin + ":" + nSec;
-                  cell1.innerHTML = prod;
-                  cell2.innerHTML = "valor";
-                  cell3.innerHTML = data;
-                  document.getElementById("produto").value = "";
-                }
+  function fecha(){
+    document.getElementById('TiposTabela').style.display='none';
+    document.getElementById('dadosTipo').style.display='none';
+  }
+</script>
+
+<script>
+  function adicionarProd(id) {
+    var table = document.getElementById("produtos");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var prod = document.getElementById("produto").value;
+    var oDate = new Date();
+    var nHrs = oDate.getHours();
+    var nMin = oDate.getMinutes();
+    var nSec = oDate.getSeconds();
+    var nDate = oDate.getDate();
+    var nMnth = oDate.getMonth();
+    var nYear = oDate.getFullYear();
+    var data = nDate + '/' + nMnth + '/' + nYear + ", " + nHrs + ":" + nMin + ":" + nSec;
+    cell1.innerHTML = prod;
+    cell2.innerHTML = "valor";
+    cell3.innerHTML = data;
+    document.getElementById("produto").value = "";
+  }
+</script>
+
+<script>
+  function NewProduto(id) {
+    var table = document.getElementById("Consumos");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var Nprod = document.getElementById("NomeProduto").value;
+    var Vprod = document.getElementById("ValorProduto").value;
+    var Descriprod = document.getElementById("Descri").value;
+    var oDate = new Date();
+    var nHrs = oDate.getHours();
+    var nMin = oDate.getMinutes();
+    var nSec = oDate.getSeconds();
+    var nDate = oDate.getDate();
+    var nMnth = oDate.getMonth();
+    var nYear = oDate.getFullYear();
+    var data = nDate + '/' + nMnth + '/' + nYear + ", " + nHrs + ":" + nMin + ":" + nSec;
+    cell1.innerHTML = Nprod;
+    cell2.innerHTML = Descriprod;
+    cell3.innerHTML = Vprod;
+    document.getElementById("NomeProduto").value = "";
+    document.getElementById("ValorProduto").value = "";
+    document.getElementById("Descri").value = "";
+  }
+</script>
+
+<script>
+  function NewHotel() {
+    var table = document.getElementById("TabHotel");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var NHotel = document.getElementById("NumHotel").value;
+    var city = document.getElementById("Hotelcidade").value;
+    var Logr = document.getElementById("Hotellogradouro").value;
+    var TipoLogr= document.getElementById("Hoteltipologradouro").value;
+    var nLogr = document.getElementById("HotelnrLogradouro").value;
+    var endereço = TipoLogr + '.' + Logr + ', ' + nLogr;
+    cell1.innerHTML = NHotel;
+    cell2.innerHTML = endereço;
+    cell3.innerHTML = city;
+    document.getElementById("NumHotel").value = "";
+    document.getElementById("HotelCidade").value = "";
+    document.getElementById("Hotellogradouro").value = "";
+    document.getElementById("Hoteltipologradouro").value = "";
+    document.getElementById("HotelnrLogradouro").value = "";
+    document.getElementById("Hotelpais").value = "";
+    document.getElementById("Hotelcidade").value = "";
+    document.getElementById("cep/zip").value = "";
+    document.getElementById("Hotelestado").value = "";
+  }
+</script>
+
+<script>
+  function alteraLocal(id){
+    document.getElementById("NrFuncionario").value="";
+    document.getElementById("NovoLocal").value=0;
+  }
+</script>
+
+<script>
+  function adicionarApt() {
+    var table = document.getElementById("aparts");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var NApt = document.getElementById("NumeroApt").value;
+    var TipoApt = document.getElementById("TipoApt").value;
+    var AptDiaria = document.getElementById("Diaria").value;
+    var Frigobar = document.getElementById("Frigobar");
+    var ArCond = document.getElementById("AC");
+    var Tv = document.getElementById("TV");
+    cell1.innerHTML = NApt;
+    cell2.innerHTML = TipoApt;
+    cell3.innerHTML = AptDiaria;
+    if (Frigobar.checked == true)
+      cell4.innerHTML = "Sim";
+    else cell4.innerHTML = "Não";
+    if (ArCond.checked == true)
+    cell5.innerHTML = "Sim";
+    else cell5.innerHTML = "Não";
+    if (Tv.checked == true)
+    cell6.innerHTML = "Sim";
+    else cell6.innerHTML = "Não";
+    document.getElementById("NumeroApt").value = "";
+    document.getElementById("TipoApt").value = "";
+    document.getElementById("Diaria").value = "";
+    document.getElementById("Frigobar").checked = false;
+    document.getElementById("AC").checked = false;
+    document.getElementById("TV").checked = false;
+  }
+</script>
+
+<script>
+  function NewTipo(id) {
+    var table = document.getElementById("TabelaTipos");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var NTipo = document.getElementById("NTipo").value;
+    var suite = document.getElementById("Suite");
+    var necEsp = document.getElementById("NecEsp");
+    var camasCasal = document.getElementById("CamasCasal").value;
+    var camasSolteiro = document.getElementById("CamasSolteiro").value;
+
+    cell1.innerHTML = NTipo;
+    if (suite.checked == true)
+      cell2.innerHTML = "Sim";
+    if (suite.checked == false) 
+      cell2.innerHTML = "Não";
+    if (necEsp.checked == true)
+      cell3.innerHTML = "Sim";
+    if (necEsp.checked == false) 
+      cell3.innerHTML = "Não";
+    cell4.innerHTML = camasCasal;
+    cell5.innerHTML = camasSolteiro;
+    document.getElementById("NTipo").value = "";
+    document.getElementById("Suite").checked = false;
+    document.getElementById("NecEsp").checked = false;
+    document.getElementById("CamasCasal").value = "";
+    document.getElementById("CamasSolteiro").value = "";
+  }
+</script>
+<script>
+  function NewConta(id) {
+    var table = document.getElementById('TabConta');
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var AptCont = document.getElementById('AptConta').value;
+    var ClienteConta = document.getElementById('ClienteConta').value;
+    var CPFConta = document.getElementById('CPFConta').value;
+    cell1.innerHTML = AptCont;
+    cell2.innerHTML = ClienteConta;
+    cell3.innerHTML = CPFConta;
+    cell4.innerHTML = "R$00,00";
+    document.getElementById('AptConta') = "";
+    document.getElementById('ClienteConta') = "";
+    document.getElementById('CPFConta') = "";
+  }
 </script>
 <script>
 							function limpo(id) {
-                        var table = document.getElementById("limpesa");
+                        var table = document.getElementById("limpe");
                         var apt = document.getElementById("AptLimpo").value;
                         var func = document.getElementById("FuncLimpo").value;
                         var row = table.insertRow(1);
                         var cell1 = row.insertCell(0);
                         var cell2 = row.insertCell(1);
                         var cell3 = row.insertCell(2);
-                        var prod = document.getElementById("produto").value;
                         var oDate = new Date();
                         var nHrs = oDate.getHours();
                         var nMin = oDate.getMinutes();
@@ -644,6 +1078,7 @@ document.getElementById(id).style.display = "none";
                         cell3.innerHTML = data;
                         document.getElementById("AptLimpo").value = "";
                         document.getElementById("FuncLimpo").value = "";
+                        document.getElementById("FuncCPF").value = "";
                       }
                     </script>
 <script>
