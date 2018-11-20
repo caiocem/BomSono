@@ -1,4 +1,4 @@
-﻿<!doctype html >
+<!doctype html >
 <html html >
 <head>
   <meta charset="UTF-8">
@@ -187,7 +187,9 @@ span.psw {
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #F7B24A;
+    background-color: white;
+    border: 20px solid white;
+    border-radius: 20px;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #F7B24A;
     width: 60%; /* Could be more or less, depending on screen size */
@@ -348,7 +350,6 @@ span.psw {
           </form>
 </div>
  
- 
  <div class="form-popup" id="Busca" style="width:60%" style="min-width:60%" style="align:right" style="padding:60%">
   <form width="600px"  class="form-container"  >
   <div style="padding:0px 20px">  
@@ -368,13 +369,7 @@ span.psw {
   <input type="checkbox" id="a/c"> <br>
   <label for="NecEsp"><b>Necessidades Especiais :</b></label>
   <input type="checkbox" id="NecEsp"> <br>
-   <select name="Npessoas" id="Npessoas">
-    <option value="NULL">Qntd Pessoas</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </select>
+
 
   <select name="Ncamas_casal" id="Ncamas_casal">
     <option value="NULL">Camas Casal</option>
@@ -498,7 +493,8 @@ document.getElementById(id).style.display = "none";
 
 <script>
 	function openApt() {
-		document.getElementById("Apts").style.display = "block"
+		document.getElementById("Busca").style.display = "none";
+		document.getElementById("Apts").style.display = "block";
 	}
 </script>
 
