@@ -13,8 +13,6 @@
 .w3-badge {height:13px;width:13px;padding:0}
 * { padding:0;margin:0%;
 }
-
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     overflow:hidden;
@@ -22,19 +20,16 @@ body {
     margin:auto;
     padding:auto;
 }
-
 /* Style the header */
 header {
     background-color: #FC8004;
     text-align: center;
     font-size: 10px;
-    margin-top: -2.4%;
+    margin-top: -1.4%;
     color: black;
     width:auto;
     height: 7%;
-
 }
-
 article {
     float: left;
     padding: 0px;
@@ -43,14 +38,12 @@ article {
     height: 85%;
     width: 100%;/* only for demonstration, should be removed */
 }
-
 /* Clear floats after the columns */
 section:after {
     content: "";
     display: table;
     clear: both;
 }
-
 /* Style the footer */
 footer {
     background-color: #777;
@@ -61,9 +54,7 @@ footer {
     height: 20%;
     width:100%;
     margin-bottom:0%;
-
 }
-
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
   background-color: #FC8004;
@@ -78,7 +69,6 @@ footer {
   right: 28px;
   width: 280px;
 }
-
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
@@ -87,26 +77,24 @@ footer {
   right: 15px;
   z-index: 9;
 }
-
 /* Add styles to the form container */
 .form-container {
   overflow: auto;
   padding: 0px 20px;
   border: 20px solid white;
   border-radius: 20px;
+  min-height: 400px;
   max-height:450px;
   max-width: 60%;
+  z-index: 1;
   padding: 0px;
   background-color: white;
   box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 0px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
 .form-container:hover {
   box-shadow: 10px 0px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-
-
 /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password]{
   width: 100%;
@@ -115,13 +103,11 @@ footer {
   border: none;
   background: #f1f1f1;
 }
-
 /* When the inputs get focus, do something */
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
-
 /* Set a style for the submit/login button */
 .form-container .btn {
   background-color: #4CAF50;
@@ -133,19 +119,15 @@ footer {
   margin-bottom:10px;
   opacity: 0.8;
 }
-
-
 /* Add a red background color to the cancel button */
 .form-container .cancel {
   color: black;
   background-color: #F7B24A;
 }
-
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
-
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 100%) {
     nav, article {
@@ -178,6 +160,19 @@ footer {
     + txt.link("file:///C:/Users/caioh/OneDrive/Área%20de%20Trabalho/BomSono-maste/BomSonoFrontPageV2.html") + "</p>");
   </script>
  
+ <div class="form-popup"  id="Reservas" style="width:60%" style="align:right" style="padding:30%">
+    <form width="600px"  class="form-container" >
+    <div style="padding:0px 20px">  
+      <h1>Minhas reservas</h1>
+       <div id="MinhasReservas">
+        <p id="Cancelamento"> </p>
+       </div>
+       <button type="button" style="background-color:red" class="btn" onclick="cancelamento()">Cancelar Reserva</button>
+       <button type="button" class="btn cancel" onclick="closeForm('Reservas')">Fechar</button>
+      </div>
+    </form>
+</div>
+
  <div class="form-popup" id="Busca" style="width:60%" style="align:right" style="padding:30%">
   <form width="600px"  class="form-container" >
   <div style="padding:0px 20px">  
@@ -228,7 +223,8 @@ footer {
  </div>
 </div> 
 
-<div style="padding-left:35% ">
+<div style="padding-left:18% ">
+<button class="open-button" onclick="openForm('Reservas')">Minhas Reservas</button>
 <button class="open-button" onclick="openForm('Busca')">Procurar</button>
 </div>
 	
@@ -256,15 +252,12 @@ footer {
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
-
 function plusDivs(n) {
   showDivs(slideIndex += n);
 }
-
 function currentDiv(n) {
   showDivs(slideIndex = n);
 }
-
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
@@ -280,21 +273,37 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " w3-white";
 }
-
 </script>
 
 <script>
 function openForm(id) {   
   if(document.getElementById(id).style.display == "block")
       document.getElementById(id).style.display = "none";
-  else
+  else {
+    document.getElementById("Busca").style.display = "none";
+    document.getElementById("Reservas").style.display="none";
     document.getElementById(id).style.display = "block";
+  }
+  if (id=="Reservas")
+    document.getElementById("Cancelamento").innerHTML ="";
 }
-
 function closeForm(id) {
 document.getElementById(id).style.display = "none";
 }
 </script>
+
+<script>
+    function cancelamento() {
+        var txt;
+        var Nreserva = prompt("Qual reserva deseja cancelar?", "Nr da reserva");
+        if (Nreserva == null || Nreserva =="" ||Nreserva == "Nr da reserva") {
+            txt = "Nenhuma reserva cancelada";
+        } else {
+            txt = "Reserva " + Nreserva + " cancelada";
+        }
+        document.getElementById("Cancelamento").innerHTML = txt;
+    }
+    </script>
 
 <script>
 function CheckTheBox(id) {
@@ -313,4 +322,3 @@ function CheckTheBox(id) {
  </div>
 </body>
 </html> 
-
