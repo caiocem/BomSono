@@ -369,10 +369,6 @@ span.psw {
                       <tbody><tr>
                         <th>Apt</th>
                         <th>Tipo</th>
-                        <th>Diária</th>
-                        <th>Frigobar</th>
-                        <th>Ar Cond</th>
-                        <th>TV</th>
                       </tr>
                       
                   </tbody></table>
@@ -399,21 +395,14 @@ span.psw {
        <option value="1">1</option>
        <option value="2">2</option> 
         </select> <br> <br>
-        <label for="Numero"><b>Diária</b></label><br>
-        <input type="number" placeholder="" name="Diaria" id="Diaria" required=""> <br>
-        <label for="Numero"><b>Frigobar</b></label><br>
-        <input type="checkbox" placeholder="" name="Frigobar" id="Frigobar" required=""> <br>
-        <label for="Numero"><b>Ar Condicionado</b></label><br>
-        <input type="checkbox" placeholder="" name="AC" id="AC" required=""> <br>
-        <label for="Numero"><b>TV</b></label><br>
-        <input type="checkbox" placeholder="" name="TV" id="TV" required=""> <br>
+
         <button type="button" onclick="adicionarApt()" id="novoApt"class="cancelbtn">Adicionar Apt</button><br>
         <p style="color:#F7B24A"> .</p>
       </div>
      </form>
   </div>
 
-       <div id="TiposTabela" class="modal" style="display:none">
+     <div id="TiposTabela" class="modal" style="display:none">
           <form class="modal-content animate" action="/action_page.php">
           <div class="imgcontainer">
           <span onclick="fecha()"  class="close" title="Close Modal">&times;</span>
@@ -425,23 +414,37 @@ span.psw {
               <th>Número</th>
               <th>Suite</th>
               <th>NecEsp</th>
+              <th>Frigobar</th>
+              <th>TV</th>
+              <th>Ar Condicionado</th>
               <th>Camas Casal</th>
               <th>Camas Solteiro</th>
+              <th>Diária</th>
             </tr>
                     
           </tbody></table>
                   
           <button type="button" style="margin-top:5px" onclick="document.getElementById('dadosTipo').style.display='block'" class="cancelbtn">Adicionar Tipo</button>
-          <div id="dadosTipo" style="display:none">                    <label for="TipoN"><b>Numero</b></label><br>
+          <div id="dadosTipo" style="display:none">                    
+            <label for="TipoN"><b>Numero</b></label><br>
             <input type="number" placeholder="" name="NTipo" id="NTipo" required=""> <br>
             <label for="TipoSuite"><b>Suite</b></label><br>
             <input type="checkbox" placeholder="" name="Suite" id="Suite" required=""> <br>
             <label for="ProdDescr"><b>NecEsp</b></label><br>
-            <input type="checkbox" placeholder="" name="Descri" id="NecEsp" required=""> <br>
+            <input type="checkbox" placeholder="" name="NecEsp" id="NecEsp" required=""> <br>
+            <label for="ProdDescr"><b>Frigobar</b></label><br>
+            <input type="checkbox" placeholder="" name="Frigobar" id="Frigobar" required=""> <br>
+            <label for="ProdDescr"><b>TV</b></label><br>
+            <input type="checkbox" placeholder="" name="TV" id="TV" required=""> <br>
+            <label for="ProdDescr"><b>ArCond</b></label><br>
+            <input type="checkbox" placeholder="" name="ArCond" id="ArCond" required=""> <br>
             <label for="ProdValor"><b>Camas Casal</b></label><br>
             <input type="number" placeholder="" name="camasCasal" id="CamasCasal" required=""> <br>
             <label for="ProdValor"><b>Camas Solteiro</b></label><br>
             <input type="number" placeholder="" name="camasSolteiro" id="CamasSolteiro" required=""> <br>
+            <label for="TipoN"><b>Diária</b></label><br>
+            <input type="number" placeholder="" name="00,00" id="Diaria" required=""> <br>
+            <p style="color:#F7B24A"> .</p>
             <button type="button" onclick="NewTipo('produto')">Adicionar</button>
           </div>
         </div>
@@ -972,34 +975,15 @@ document.getElementById(id).style.display = "none";
     var row = table.insertRow(1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var cell5 = row.insertCell(4);
-    var cell6 = row.insertCell(5);
+
     var NApt = document.getElementById("NumeroApt").value;
     var TipoApt = document.getElementById("TipoApt").value;
-    var AptDiaria = document.getElementById("Diaria").value;
-    var Frigobar = document.getElementById("Frigobar");
-    var ArCond = document.getElementById("AC");
-    var Tv = document.getElementById("TV");
+
     cell1.innerHTML = NApt;
     cell2.innerHTML = TipoApt;
-    cell3.innerHTML = AptDiaria;
-    if (Frigobar.checked == true)
-      cell4.innerHTML = "Sim";
-    else cell4.innerHTML = "Não";
-    if (ArCond.checked == true)
-    cell5.innerHTML = "Sim";
-    else cell5.innerHTML = "Não";
-    if (Tv.checked == true)
-    cell6.innerHTML = "Sim";
-    else cell6.innerHTML = "Não";
+
     document.getElementById("NumeroApt").value = "";
     document.getElementById("TipoApt").value = "";
-    document.getElementById("Diaria").value = "";
-    document.getElementById("Frigobar").checked = false;
-    document.getElementById("AC").checked = false;
-    document.getElementById("TV").checked = false;
   }
 </script>
 
@@ -1012,11 +996,19 @@ document.getElementById(id).style.display = "none";
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    var cell9 = row.insertCell(8);
     var NTipo = document.getElementById("NTipo").value;
     var suite = document.getElementById("Suite");
     var necEsp = document.getElementById("NecEsp");
+    var Frigo = document.getElementById("Frigobar");
+    var Teve = document.getElementById("TV");
+    var Ar = document.getElementById("ArCond");
     var camasCasal = document.getElementById("CamasCasal").value;
     var camasSolteiro = document.getElementById("CamasSolteiro").value;
+    var Diar = document.getElementById("Diaria").value;
 
     cell1.innerHTML = NTipo;
     if (suite.checked == true)
@@ -1027,13 +1019,30 @@ document.getElementById(id).style.display = "none";
       cell3.innerHTML = "Sim";
     if (necEsp.checked == false) 
       cell3.innerHTML = "Não";
-    cell4.innerHTML = camasCasal;
-    cell5.innerHTML = camasSolteiro;
+    if (Frigo.checked == true)
+      cell4.innerHTML = "Sim";
+    if (Frigo.checked == false) 
+      cell4.innerHTML = "Não";
+    if (Teve.checked == true)
+      cell5.innerHTML = "Sim";
+    if (Teve.checked == false) 
+      cell5.innerHTML = "Não";
+    if (Ar.checked == true)
+      cell6.innerHTML = "Sim";
+    if (Ar.checked == false) 
+      cell6.innerHTML = "Não";
+    cell7.innerHTML = camasCasal;
+    cell8.innerHTML = camasSolteiro;
+    cell9.innerHTML = Diar;
     document.getElementById("NTipo").value = "";
     document.getElementById("Suite").checked = false;
     document.getElementById("NecEsp").checked = false;
+    document.getElementById("Frigobar").checked = false;
+    document.getElementById("TV").checked = false;
+    document.getElementById("ArCond").checked = false;
     document.getElementById("CamasCasal").value = "";
     document.getElementById("CamasSolteiro").value = "";
+    document.getElementById("Diaria").value = "";
   }
 </script>
 <script>
