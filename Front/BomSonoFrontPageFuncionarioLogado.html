@@ -277,6 +277,7 @@ span.psw {
         <button style="width:100%" style="padding-left:-20px" class="open-button" onclick="openForm('Apartamentos')">Apartamentos</button>
         <button style="width:100%" style="padding-left:-20px" class="open-button" onclick="openForm('Consumiveis')">Consumíveis</button>
         <button style="width:100%" class="open-button" onclick="openForm('Contas')">Contas</button>
+        <button style="width:100%" class="open-button" onclick="openForm('Reservas')">Reservas</button>
         <button style="width:100%" class="open-button" onclick="openForm('limpeza')">Limpeza</button>
         <button style="width:100%" class="open-button" onclick="openForm('Funcionario')">Funcionários</button>
         <button style="width:100%" style="padding-left:-10px" class="open-button" onclick="openForm('hoteis')">Hotéis</button>
@@ -448,6 +449,31 @@ span.psw {
       
        </form>
     </div>
+
+    <div style="display: none;" id="Reservas">
+      <form style="padding-left:20%" >
+          <div style="padding 0px 20px">
+              <table id="aparts">
+                  <tbody><tr>
+                    <th>Apt/Tipo(?)</th>
+                    <th>Dt Entrada</th>
+                    <th>Dt Saída</th>
+                    <th>Cidade Origem/Destino</th>
+                    <th>Estado Origem/Destino</th>
+                    <th>País Origem/Destino</th>
+                    <th>Meio de Transporte</th>
+                    <th>Efetivada</th>
+                  </tr>
+                  
+              </tbody></table>
+             <div class="container" style="padding-top:5px"> 
+              <button type="button" onclick="document.getElementById('ConfReserva').value=null " class="cancelbtn">Confirmar Reserva</button>
+              <input type="number" placeholder="Número Reserva" name="ConfReserva" id="ConfReserva" required="">
+            </div>
+              
+          </div>
+      </form>
+   </div>
     
     <div style="display: none;" id="Funcionario">
       <form style="padding-left:20%" >
@@ -891,6 +917,8 @@ function openForm(id) {
     document.getElementById("hoteis").style.display ="none";
   if(document.getElementById("Funcionario").style.display =="block")
     document.getElementById("Funcionario").style.display ="none";
+  if(document.getElementById("Reservas").style.display =="block")
+    document.getElementById("Reservas").style.display ="none";
   document.getElementById(id).style.display = "block";
   }
 }
