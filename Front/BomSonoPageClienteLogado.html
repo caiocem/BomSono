@@ -129,6 +129,66 @@ footer {
   opacity: 1;
 }
 
+/* The popup form - hidden by default */
+.form2-popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+/* Add styles to the form container */
+.form2-container {
+  background-color: white;
+  border: 20px solid white;
+  border-radius: 20px;
+  margin: 1% auto 1% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #F7B24A;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+.form2-container:hover {
+  box-shadow: 10px 0px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+/* Full-width input fields */
+.form2-container input[type=text], .form2-container input[type=password]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+/* When the inputs get focus, do something */
+.form2-container input[type=text]:focus, .form2-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+/* Set a style for the submit/login button */
+.form2-container .btn {
+  background-color: #4CAF50;
+  color: black;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+/* Add a red background color to the cancel button */
+.form2-container .cancel {
+  color: black;
+  background-color: #F7B24A;
+}
+/* Add some hover effects to buttons */
+.form2-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
 /* Center the image and position the close button */
 .imgcontainer {
     text-align: center;
@@ -191,6 +251,30 @@ span.psw {
     cursor: pointer;
 }
 
+table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #ddd;}
+
+tr:hover {background-color: grey;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #FC8004;
+  color: white;
+
+}
+
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 100%) {
     nav, article {
@@ -236,16 +320,83 @@ span.psw {
     </form>
 </div>
 
+<div class="form-popup" id="Reserva">
+    <form  class="form-container">
+    <div style="padding 0px 20px">
+        <label for="Numero"><b>Número</b></label>
+        <input type="text" placeholder="13" name="nrLogradouro" id="nrlogradouro" required>
+    </div>
+    </form>
+  </div>
+
 <div id="Apts" class="modal" style="display:none">
   <form class="modal-content animate" action="/action_page.php">
     <div class="imgcontainer" id="QuartosAqui">
       <span onclick="document.getElementById('Apts').style.display='none'" class="close" title="Close Modal">&times;</span>
       <p><b>Quartos</b></p>
+      <div id="AptsDisp">
+          <table id="AptsDispo">
+            <tbody><tr>
+                <th>CodNF</th>
+                <th>NroOrdem</th>
+                <th>Serie</th>
+                <th>SubSerie</th>
+                <th>NroVia</th>
+                <th>DtEmissã</th>
+              </tr>
+              <tr>
+                <td>15464</td>
+                <td>486464</td>
+                <td>D2</td>
+                <td>F23</td>
+                <td>5548cd41</td>
+                <td>21/02/2018, 15:32:29</td>
+              </tr>
+              <tr>
+                <td>46958</td>
+                <td>145641</td>
+                <td>G6</td>
+                <td>G45</td>
+                <td>9452d8f</td>
+                <td>21/02/2018, 15:32:29</td>
+              </tr>
+            </tbody></table>
+          </div>
     </div> 
     <div class="container">
     </div>  
   </form>
 </div>
+
+<div id="DadosReserva" class="modal" style="display:none" style="padding-left:10%">
+    <form class="form2-container" action="/action_page.php">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('DadosReserva').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <p style="padding-bottom:5%">Preencha os dados para realisar a reserva</p>
+        <label for="Numero"><b>Pais de Origem</b></label><br>
+        <input type="text" placeholder="Brasil" name="PaisOrigem" id="PaisOrigem" ><br>
+        <label for="Numero"><b>Pais de Destino</b></label><br>
+        <input type="text" placeholder="China" name="PaisDestino" id="PaisDestino" ><br>
+        <label for="Numero"><b>Estado de Origem</b></label><br>
+        <input type="text" placeholder="São Paulo" name="EstadoOrigem" id="EstadoOrigem" ><br>
+        <label for="Numero"><b>Estado de Destino</b></label><br>
+        <input type="text" placeholder="Kiangsu" name="EstadoDestino" id="EstadoDestino" ><br>
+        <label for="Numero"><b>Cidade de Origem</b></label><br>
+        <input type="text" placeholder="São Paulo" name="CidadeOrigem" id="CidadeOrigem" ><br>
+        <label for="Numero"><b>Cidade de Destino</b></label><br>
+        <input type="text" placeholder="Xangai" name="CidadeDestino" id="CidadeDestino" ><br>
+        <label for="Numero"><b>Meio de Transporte</b></label><br>
+        <input type="text" placeholder="Metro" name="MeioTransporte" id="MeioTransporte" ><br>
+        <label for="Numero"><b>Motivo de Viagem</b></label><br>
+        <input type="text" placeholder="Lazer" name="MotivoViagem" id="MotivoViagem" ><br>
+      </div> 
+      <div class="container">
+        <button type="button" class="btn" onclick="ConfirmarReserva()" >Confirmar</button>
+        <button type="button" class="btn cancel" onclick="closeForm('DadosReserva')">Cancelar</button>
+      </div>  
+    </form>
+  </div>
+  
 
  <div class="form-popup" id="Busca" style="width:60%" style="align:right" style="padding:30%">
   <form width="600px"  class="form-container" >
@@ -291,7 +442,7 @@ span.psw {
   <p> até </p> <input type="date" id="DataSaida" value="" required> <br><br>
    </div>
    <div>
-    <button type="button" onclick="openApt()" class="btn">Buscar</button>
+    <button type="button" onclick="openApt()" class="btn" onclick="onRowClick(AptsDispo)" >Buscar</button>
     <button type="button" class="btn cancel" onclick="closeForm('Busca')">Fechar</button>
   </form>
  </div>
@@ -348,6 +499,28 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-white";
 }
 </script>
+<script type="text/javascript">
+function onRowClick(tableid, callback) {
+  var table = document.getElementById(tableid),
+      rows = table.getElementsByTagName("tr"),
+      i;
+  for (i = 0; i < rows.length; i++) {
+      table.rows[i].onclick = function (row) {
+          return function () {
+              callback(row);
+          };
+      }(table.rows[i]);
+  }
+};
+
+onRowClick("AptsDispo", function (row){
+  var txt;
+    if (confirm("Reservar Apartamento")) {
+      document.getElementById("Apts").style.display = "none";
+      document.getElementById("DadosReserva").style.display = "block";
+    } 
+});
+</script>
 
 <script>
 function openForm(id) {   
@@ -382,7 +555,13 @@ document.getElementById(id).style.display = "none";
         }
         document.getElementById("Cancelamento").innerHTML = txt;
     }
-    </script>
+</script>
+<script>
+  function ConfirmarReserva(){
+    alert("Reserva Efetuada");
+    document.getElementById("DadosReserva").style.display = "none";
+  }
+</script>
 
 <script>
 function CheckTheBox(id) {
